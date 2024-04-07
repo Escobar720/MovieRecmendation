@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Bootstrap demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+  
+
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">flakes</h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <a href="/" class="menu-list-item active">Home</a>
+                    <a href="/Movies" class="menu-list-item">Movies</a>
+                    <li class="menu-list-item">Series</li>
+                    <li class="menu-list-item">Popular</li>
+                    <li class="menu-list-item">Trends</li>
+                    <a href="/index2" class="menu-list-item">Recommend Movies</a>
+                    
+
+                </ul>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="static/profile.jpg" alt="">
+                <div class="profile-text-container">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <i class="left-menu-icon fas fa-search"></i>
+        <i class="left-menu-icon fas fa-home"></i>
+        <i class="left-menu-icon fas fa-users"></i>
+        <i class="left-menu-icon fas fa-bookmark"></i>
+        <i class="left-menu-icon fas fa-tv"></i>
+        <i class="left-menu-icon fas fa-hourglass-start"></i>
+        <i class="left-menu-icon fas fa-shopping-cart"></i>
+    </div>
+
+
+    <div class="container">
+        <div class="content-container">
+                <div class="container py-20">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Movie Recommendation System</h1>
+                      <p class="text-primary"><b>{{error}}</b></p><br>
+                         <div class="row text-center">
+                            <div class="col-md-11">
+                                <div class="col-md-11">
+                                    <form action="/index2" method="POST">
+                                        <select class="form-select" id="movies" name="movies" aria-label="Default select example">
+                                            {% for j in movie_list %}
+                                            <option value="{{j}}">{{j}}</option>
+                                            {% endfor %}
+                                        </select><br>
+                                        <button type="submit" class="btn btn-success">Success</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                  <!-- {% if status == True %} 
+                  <section class="text-gray-600 body-font">
+                    <div class="container px-5 py-24 mx-auto">
+                      <div class="flex flex-wrap w-full mb-20">
+                        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-white-900">Recommend Movies</h1>
+                        </div>
+                            <div class="flex flex-wrap -m-4">
+                                <div class="xl:w-1/4 md:w-1/2 p-1">
+                                    <div class="bg-gray-100 p-6 rounded-lg">
+                                        <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[0]}}" alt="content">
+                                        <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">movie name</h3>
+                                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[0]}}</h2>
+                                    </div>
+                                </div>
+                                <div class="xl:w-1/4 md:w-1/2 p-2">
+                                    <div class="bg-gray-100 p-6 rounded-lg">
+                                        <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[1]}}" alt="content">
+                                        <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">movie name</h3>
+                                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[1]}}</h2>
+                                    </div>
+                                </div>
+                                <div class="xl:w-1/4 md:w-1/2 p-3">
+                                    <div class="bg-gray-100 p-6 rounded-lg">
+                                        <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster[2]}}" alt="content">
+                                        <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">movie name</h3>
+                                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[2]}}</h2>
+                                    </div>
+                                </div>
+                                <div class="xl:w-1/4 md:w-1/2 p-4">
+                                    <div class="bg-gray-100 p-6 rounded-lg">
+                                        <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{poster3}}" alt="content">
+                                        <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">movie name</h3>
+                                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{movies_name[3]}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  </section>
+                  {% endif %}
+
+ -->
+
+
+
+
+
+
+
+
+
+<!-- 
+                </div>
+        </div>
+    </div>
+    -->
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
